@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soshi & Saif 💖</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #ffe6f0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.1s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .yes { background: #ff6699; color: #fff; }
+    .no  { background: #ccc; color: #333; }
+
+    /* Heart float animation */
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      animation: float 3s ease-in infinite;
+      opacity: 0;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="step1">
+    <p>⭐️ You are Soshi, right?</p>
+    <button class="yes" id="soshiYes">Yes 😊</button>
+    <button class="no" id="soshiNo">No 😢</button>
+  </div>
+
+  <div id="step2" class="hidden">
+    <p>💌 Saif wants to tell you something, want to see?</p>
+    <button class="yes" id="saifYes">Yes 💖</button>
+    <button class="no" id="saifNo">No 😥</button>
+  </div>
+
+  <div id="result" class="hidden">
+    <p id="message"></p>
+  </div>
+
+  <script>
+    function floatHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+    setInterval(floatHeart, 500);
+
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const result = document.getElementById('result');
+    const message = document.getElementById('message');
+
+    document.getElementById('soshiYes').onclick = () => {
+      step1.classList.add('hidden');
+      step2.classList.remove('hidden');
+    };
+    document.getElementById('soshiNo').onclick = () => {
+      step1.classList.add('hidden');
+      message.textContent = 'Hi Apu 👋';
+      result.classList.remove('hidden');
+    };
+
+    document.getElementById('saifYes').onclick = () => {
+      step2.classList.add('hidden');
+      message.textContent = 'Saif Loves You So Much! 💕';
+      result.classList.remove('hidden');
+    };
+    document.getElementById('saifNo').onclick = () => {
+      step2.classList.add('hidden');
+      message.textContent = 'Hi Apu 👋';
+      result.classList.remove('hidden');
+    };
+  </script>
+</body>
+</html>
